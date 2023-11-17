@@ -1,4 +1,4 @@
-package se
+package SSM
 
 import (
 	"fmt"
