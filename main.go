@@ -1,7 +1,10 @@
-package main
+package se
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
+
 	fmt.Println("Hello, World!")
 }

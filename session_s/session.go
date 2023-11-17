@@ -16,6 +16,7 @@ func createSessionObj() *session {
 	return obj
 }
 
+// Перенести в отдельный пакет
 func generateID() string {
 	return "test"
 }
