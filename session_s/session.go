@@ -3,20 +3,15 @@ package session_s
 type session struct {
 	id    string
 	state sessionState
-	cash  *sessionCache
+	cache *sessionCache
 }
 
 func createSessionObj() *session {
 	var obj *session = new(session)
 
-	obj.id = generateID()
+	obj.id = ""
 	obj.state = on
-	obj.cash = new(sessionCache)
+	obj.cache = new(sessionCache)
 
 	return obj
-}
-
-// Перенести в отдельный пакет
-func generateID() string {
-	return "test"
 }
