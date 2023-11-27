@@ -1,17 +1,17 @@
 package session_s
 
-type session struct {
+type Session struct {
 	id    string
 	state sessionState
 	cache *sessionCache
 }
 
-func createSessionObj() *session {
-	var obj *session = new(session)
+func createSessionObj() *Session {
+	var obj *session = new(Session)
 
-	obj.id = ""
+	obj.id = session_utils.GenerateUUID()
 	obj.state = on
-	obj.cache = new(sessionCache)
+	obj.cache = new(SessionCache)
 
 	return obj
 }
