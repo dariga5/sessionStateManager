@@ -8,6 +8,6 @@ const (
 	sleep = 2
 )
 
-func changeState(s *session, state sessionState) {
+func ChangeState(s *session, state sessionState) {
 	s.state = sessionState(state)
 }
