@@ -41,7 +41,7 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 	}
 }
 
-func (sessionCache *sessionCache) PullRequest(data string) error {
+func (sessionCache *sessionCache) PushRequest(data string) error {
 	if sessionCache.lastReqIndex == cacheLen {
 		return errors.New("Session cache is full")
 	} else {
@@ -51,7 +51,7 @@ func (sessionCache *sessionCache) PullRequest(data string) error {
 	return nil
 }
 
-func (sessionCache *sessionCache) PullResponse(data string) error {
+func (sessionCache *sessionCache) PushResponse(data string) error {
 	if sessionCache.lastResIndex == cacheLen {
 		return errors.New("Session cache is full")
 	} else {
