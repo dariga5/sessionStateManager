@@ -19,9 +19,13 @@ type cacheExp struct {
 
 func (sessionCache *sessionCache) GetData(index int) cacheExp {
 	var err error
+
 	if index > cacheLen || index < cacheLen {
 		err = errors.New("Index exceeds cache capacity")
+	} else {
+		err = nil
 	}
+
 	return cacheExp{
 		Err: err,
 		Data: [2]string{
@@ -32,7 +36,7 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 }
 
 func (sessionCache *sessionCache) SetRequest(data string) error {
-	if sessionCache.lastReqIndex == cacheLen {
+	if sessionCache.lastReqIndex == cacheLen-1 {
 		return errors.New("Session cache is full")
 	} else {
 		sessionCache.req[sessionCache.lastReqIndex] = data
