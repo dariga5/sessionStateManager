@@ -1,19 +1,33 @@
 package main
 
-import "SSM/main/session_s"
+import (
+	"SSM/main/session_s"
+	"fmt"
+)
 
 func main() {
 	var s = session_s.CreateSessionObj()
 
-	print(s.GetCache().PushRequest("1").Err)
-	print(s.GetCache().PushRequest("2").Err)
-	print(s.GetCache().PushRequest("3").Err)
-	print(s.GetCache().PushRequest("4").Err)
-	print(s.GetCache().PushRequest("5").Err)
-	print(s.GetCache().PushRequest("6").Err)
-	print(s.GetCache().PushRequest("7").Err)
-	print(s.GetCache().PushRequest("8").Err)
-	print(s.GetCache().PushRequest("9").Err)
-	print(s.GetCache().PushRequest("0").Err)
+	var data = (s.GetCache().PushRequest("1").Err)
+	var data1 = (s.GetCache().PushRequest("1").Err)
+	var data2 = (s.GetCache().PushRequest("1").Err)
+	var data3 = (s.GetCache().PushRequest("1").Err)
+	var data4 = (s.GetCache().PushRequest("1").Err)
+	var data5 = (s.GetCache().PushRequest("1").Err)
+	var data6 = (s.GetCache().PushRequest("1").Err)
+	var data7 = (s.GetCache().PushRequest("1").Err)
+	var data8 = (s.GetCache().PushRequest("1").Err)
+	var data9 = (s.GetCache().PushRequest("1").Err)
+
+	fmt.Println("Data : ", data)
+	fmt.Println("Data : ", data1)
+	fmt.Println("Data : ", data2)
+	fmt.Println("Data : ", data3)
+	fmt.Println("Data : ", data4)
+	fmt.Println("Data : ", data5)
+	fmt.Println("Data : ", data6)
+	fmt.Println("Data : ", data7)
+	fmt.Println("Data : ", data8)
+	fmt.Println("Data : ", data9)
 
 }
