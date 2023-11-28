@@ -21,11 +21,8 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 	var req string
 	var res string
 
-	if index > cacheLen || index < cacheLen {
-		err = errors.New("Index exceeds cache capacity")
-		req = "invalid"
-		res = "invalid"
-
+	if index > cacheLen || index < 0 {
+		err = errors.New("The index goes beyond the boundaries")
 	} else {
 		err = nil
 		req = sessionCache.req[index]
@@ -41,22 +38,38 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 	}
 }
 
-func (sessionCache *sessionCache) PushRequest(data string) error {
-	if sessionCache.lastReqIndex == cacheLen {
-		return errors.New("Session cache is full")
+func (sessionCache *sessionCache) PushRequest(data string) cacheExp {
+	var err error
+
+	if sessionCache.lastReqIndex > cacheLen {
+		sessionCache.lastReqIndex = 0
+		err = errors.New("The cache request was full. Overwriting the queue")
 	} else {
-		sessionCache.req[sessionCache.lastReqIndex] = data
 		sessionCache.lastReqIndex++
 	}
-	return nil
+
+	sessionCache.req[sessionCache.lastReqIndex] = data
+
+	return cacheExp{
+		Err:  err,
+		Data: sessionCache.lastReqIndex,
+	}
 }
 
-func (sessionCache *sessionCache) PushResponse(data string) error {
-	if sessionCache.lastResIndex == cacheLen {
-		return errors.New("Session cache is full")
+func (sessionCache *sessionCache) PushResponse(data string) cacheExp {
+	var err error
+
+	if sessionCache.lastResIndex > cacheLen {
+		sessionCache.lastResIndex = 0
+		err = errors.New("The cache response was full. Overwriting the queue")
 	} else {
-		sessionCache.res[sessionCache.lastResIndex] = data
 		sessionCache.lastResIndex++
 	}
-	return nil
+
+	sessionCache.res[sessionCache.lastResIndex] = data
+
+	return cacheExp{
+		Err:  err,
+		Data: sessionCache.lastResIndex,
+	}
 }
