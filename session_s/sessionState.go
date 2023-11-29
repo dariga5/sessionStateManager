@@ -8,6 +8,8 @@ const (
 	sleep = -1
 )
 
+type SessionStateExport sessionState
+
 func ChangeState(s *session, state sessionState) {
 	s.state = sessionState(state)
 }

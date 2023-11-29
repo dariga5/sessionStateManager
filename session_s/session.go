@@ -10,6 +10,8 @@ type session struct {
 	cache *sessionCache
 }
 
+type SessionExport session
+
 func CreateSessionObj() *session {
 	var obj *session = new(session)
 
