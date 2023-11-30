@@ -6,7 +6,7 @@ import (
 )
 
 type Pool interface {
-	CreatePool()
+	CreatePool() *Pool
 	AddSession(s *session.SessionExport) error
 	FindSession(id string) *session.SessionExport
 }
@@ -14,8 +14,8 @@ type Pool interface {
 type DefaultPool struct {
 }
 
-func (p DefaultPool) CreatePool() {
-
+func (p DefaultPool) CreatePool() *DefaultPool {
+	return new(DefaultPool)
 }
 
 func (p DefaultPool) AddSession(s *session.SessionExport) error {
