@@ -18,7 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	s.GetCache().PushRequest(r.URL.Path)
 
-	var data = s.GetCache().GetData(7)
+	var data = s.GetCache().GetData(12)
 
 	fmt.Println(data.Data)
 	fmt.Println(data.Err)

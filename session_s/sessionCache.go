@@ -21,7 +21,7 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 	var req string
 	var res string
 
-	if index > cacheLen || index < 0 {
+	if index >= cacheLen || index < 0 {
 		err = errors.New("The index goes beyond the boundaries")
 	} else {
 		err = nil
