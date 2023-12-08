@@ -5,8 +5,10 @@ import (
 	"errors"
 )
 
+const pool_size = 4
+
 type Pool struct {
-	pool [4]session.Session
+	pool [pool_size]session.Session
 }
 
 func (p Pool) AddSession(s *session.Session) error {
