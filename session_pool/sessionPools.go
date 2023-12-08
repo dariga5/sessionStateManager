@@ -5,24 +5,13 @@ import (
 	"errors"
 )
 
-type Pool interface {
-	CreatePool() *Pool
-	AddSession(s *session.SessionExport) error
-	FindSession(id string) *session.SessionExport
+type Pool struct {
 }
 
-type DefaultPool struct {
-}
-
-func (p DefaultPool) CreatePool() *DefaultPool {
-	return new(DefaultPool)
-}
-
-func (p DefaultPool) AddSession(s *session.SessionExport) error {
-
+func (p Pool) AddSession(s *session.SessionExport) error {
 	return errors.New("Error")
 }
 
-func (p DefaultPool) FindSession(id string) *session.SessionExport {
+func (p Pool) FindSession(id string) *session.SessionExport {
 	return nil
 }

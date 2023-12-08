@@ -11,13 +11,10 @@ type sessionCache struct {
 	req [cacheLen]string
 	res [cacheLen]string
 }
-type cacheExp struct {
-	Err  error
-	Data any
-}
 
-func (sessionCache *sessionCache) GetData(index int) cacheExp {
+func (sessionCache *sessionCache) GetData(index int) ([2]string, error) {
 	var err error
+
 	var req string
 	var res string
 
@@ -29,16 +26,10 @@ func (sessionCache *sessionCache) GetData(index int) cacheExp {
 		res = sessionCache.res[index]
 	}
 
-	return cacheExp{
-		Err: err,
-		Data: [2]string{
-			req,
-			res,
-		},
-	}
+	return [2]string{req, res}, err
 }
 
-func (sessionCache *sessionCache) PushRequest(data string) cacheExp {
+func (sessionCache *sessionCache) PushRequest(data string) (uint8, error) {
 	var err error
 
 	if sessionCache.lastReqIndex >= (cacheLen - 1) {
@@ -50,13 +41,10 @@ func (sessionCache *sessionCache) PushRequest(data string) cacheExp {
 
 	sessionCache.req[sessionCache.lastReqIndex] = data
 
-	return cacheExp{
-		Err:  err,
-		Data: sessionCache.lastReqIndex,
-	}
+	return sessionCache.lastReqIndex, err
 }
 
-func (sessionCache *sessionCache) PushResponse(data string) cacheExp {
+func (sessionCache *sessionCache) PushResponse(data string) (uint8, error) {
 	var err error
 
 	if sessionCache.lastResIndex >= (cacheLen - 1) {
@@ -68,8 +56,5 @@ func (sessionCache *sessionCache) PushResponse(data string) cacheExp {
 
 	sessionCache.res[sessionCache.lastResIndex] = data
 
-	return cacheExp{
-		Err:  err,
-		Data: sessionCache.lastResIndex,
-	}
+	return sessionCache.lastResIndex, err
 }
