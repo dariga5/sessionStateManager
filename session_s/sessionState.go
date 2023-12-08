@@ -10,6 +10,6 @@ const (
 
 type SessionStateExport sessionState
 
-func ChangeState(s *session, state sessionState) {
+func ChangeState(s *Session, state sessionState) {
 	s.state = sessionState(state)
 }

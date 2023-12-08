@@ -4,16 +4,14 @@ import (
 	session_utils "SSM/main/session_s/session_utils_lib"
 )
 
-type session struct {
+type Session struct {
 	id    string
 	state sessionState
 	cache *sessionCache
 }
 
-type SessionExport session
-
-func CreateSessionObj() *session {
-	var obj *session = new(session)
+func CreateSessionObj() *Session {
+	var obj *Session = new(Session)
 
 	obj.id = session_utils.GenerateUUID()
 	obj.state = on
@@ -22,12 +20,12 @@ func CreateSessionObj() *session {
 	return obj
 }
 
-func (session *session) GetID() string {
+func (session *Session) GetID() string {
 	return session.id
 }
-func (session *session) GetState() sessionState {
+func (session *Session) GetState() sessionState {
 	return session.state
 }
-func (session *session) GetCache() *sessionCache {
+func (session *Session) GetCache() *sessionCache {
 	return session.cache
 }

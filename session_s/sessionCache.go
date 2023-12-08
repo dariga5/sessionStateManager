@@ -30,31 +30,35 @@ func (sessionCache *sessionCache) GetData(index int) ([2]string, error) {
 }
 
 func (sessionCache *sessionCache) PushRequest(data string) (uint8, error) {
-	var err error
 
 	if sessionCache.lastReqIndex >= (cacheLen - 1) {
+
 		sessionCache.lastReqIndex = 0
-		err = errors.New("The cache request was full. Overwriting the queue")
+
+		return sessionCache.lastReqIndex, errors.New("The cache request was full. Overwriting the queue")
 	} else {
 		sessionCache.lastReqIndex++
+
 	}
 
 	sessionCache.req[sessionCache.lastReqIndex] = data
 
-	return sessionCache.lastReqIndex, err
+	return sessionCache.lastReqIndex, nil
 }
 
 func (sessionCache *sessionCache) PushResponse(data string) (uint8, error) {
-	var err error
 
 	if sessionCache.lastResIndex >= (cacheLen - 1) {
+
 		sessionCache.lastResIndex = 0
-		err = errors.New("The cache response was full. Overwriting the queue")
+
+		return sessionCache.lastResIndex, errors.New("The cache response was full. Overwriting the queue")
 	} else {
 		sessionCache.lastResIndex++
+
 	}
 
 	sessionCache.res[sessionCache.lastResIndex] = data
 
-	return sessionCache.lastResIndex, err
+	return sessionCache.lastResIndex, nil
 }
