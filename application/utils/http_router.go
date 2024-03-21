@@ -21,6 +21,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		http.Error(w, err.Error(), 400)
+
 		return
 	}
 
@@ -28,6 +29,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		http.Error(w, err.Error(), 400)
+
 		return
 	}
 }
