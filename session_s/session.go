@@ -15,9 +15,8 @@ func CreateSessionObj() Session {
 	}
 	return obj
 }
-
-func (session Session) PushRequest(req string) {
-	session.Cache[req] = CreateDataObj()
+func CreateCache() *Data {
+	return CreateDataObj()
 }
 
 func (session Session) GetAllData() string {

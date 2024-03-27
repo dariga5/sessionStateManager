@@ -9,7 +9,6 @@ func InitRouter() *http.ServeMux {
 	router := http.NewServeMux()
 
 	router.Handle("/home", http.HandlerFunc(home))
-	router.Handle("/get_hash", http.HandlerFunc(gost_hash))
 
 	return router
 }
@@ -32,8 +31,4 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
-}
-
-func gost_hash(w http.ResponseWriter, r *http.Request) {
-
 }
